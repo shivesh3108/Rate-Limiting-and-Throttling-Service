@@ -31,14 +31,14 @@
   </ul>
   <p>The service tracks requests based on identifiers like <em>IP address</em>, <em>API key</em>, or <em>user ID</em>. Request data is stored in an efficient, in-memory data store like <strong>Redis</strong> to support high-speed access and scalability.</p>
 
-  <h3>2. Configurable Rate Limits for Different User Tiers (Optional)</h3>
+  <h3>2. Configurable Rate Limits for Different User Tiers </h3>
   <p>To support multiple tiers, the service can dynamically adjust rate limits based on user roles. For example, premium users may have higher limits than free-tier users.</p>
   <ul>
     <li><strong>Configuration:</strong> Rate limit configurations can be loaded from files or environment variables.</li>
     <li><strong>Dynamic Adjustment:</strong> Allows real-time adaptation of rate limits based on user profiles.</li>
   </ul>
 
-  <h3>3. Admin Control API Endpoints (Optional)</h3>
+  <h3>3. Admin Control API Endpoints </h3>
   <p>For improved flexibility and management, this service includes API endpoints for administrative functions:</p>
   <ul>
     <li><strong>Usage Monitoring:</strong> Real-time visibility into request counts and rate limit status per user.</li>
@@ -53,7 +53,7 @@
     <li><strong>Scalability:</strong> Distributed storage ensures that counters are shared across nodes in a scalable environment.</li>
   </ul>
 
-  <h3>5. Rate Limit Exceeding Responses (Bonus)</h3>
+  <h3>5. Rate Limit Exceeding Responses </h3>
   <p>When users exceed their allowed rate limit, the service returns a standardized response:</p>
   <ul>
     <li><strong>HTTP 429 - Too Many Requests:</strong> Indicates that the user has reached their rate limit.</li>
