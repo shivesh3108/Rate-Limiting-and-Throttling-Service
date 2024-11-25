@@ -3,10 +3,6 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-#Shivesh
-src/main/java/com/project/rate_limiting/limiter/demoFixed.java
-src/main/java/com/project/rate_limiting/limiter/demoToken.java
-src/main/java/com/project/rate_limiting/limiter/demoSliding.java
 
 ### STS ###
 .apt_generated

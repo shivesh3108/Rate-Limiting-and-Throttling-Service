@@ -5,12 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class TokenBucketRateLimiter{
@@ -61,8 +57,7 @@ public class TokenBucketRateLimiter{
         }
 
         if (currentTokens > 0) {
-            long res = redisTemplate.opsForValue().decrement(redisKeyTokens);
-            System.out.println(res);
+            redisTemplate.opsForValue().decrement(redisKeyTokens);
             return true;
         }
         return false;
@@ -88,6 +83,7 @@ public class TokenBucketRateLimiter{
     public boolean isUserBanned(String clientId) {
         String banKey = BAN_KEY_PREFIX + clientId;
         return redisTemplate.opsForValue().get(banKey) != null;
+
     }
 
     public Map<String, Object> getUserRateLimitStatus(String clientId, String userTier) {

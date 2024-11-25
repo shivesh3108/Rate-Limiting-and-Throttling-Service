@@ -6,7 +6,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -39,17 +38,13 @@ public class SlidingWindowRateLimiter {
         String redisKey = "sliding-window:" + clientId;
         long currentTime = System.currentTimeMillis();
 
-        // Start of the sliding window
         long windowStart = currentTime - windowSizeMillis;
 
-        // Remove entries older than the window start
         redisTemplate.opsForZSet().removeRangeByScore(redisKey, 0, windowStart);
 
-        // Count the number of entries in the current window
         Long requestCount = redisTemplate.opsForZSet().zCard(redisKey);
         System.out.println(requestCount);
 
-        // Allow request if within limit
         if (requestCount != null && requestCount < requestLimit) {
             redisTemplate.opsForZSet().add(redisKey, String.valueOf(currentTime), currentTime);
             redisTemplate.expire(redisKey, windowStart, TimeUnit.MILLISECONDS);
